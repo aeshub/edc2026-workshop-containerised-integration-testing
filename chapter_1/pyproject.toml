@@ -16,8 +16,6 @@ dependencies = [
   "pydantic",
   "starlette",
   "httpx",
-  "pytest",
-  "black"
 ]
 
 [project.optional-dependencies]
