@@ -182,6 +182,13 @@ communicate with postgres. Add this part in you code where you create the contai
 PostgresContainer(..., driver="psycopg")
 ```
 
+## Task 6: Evaluating the result
+
+What happened to our tests when executing with the postgres database? Did they pass? Did they fail? If they failed, what
+was the reason for the failure?
+
+We will go through this in plenary, feel free to work on the bonus tasks while waiting.
+
 ## Bonus tasks
 
 ### Exploring community modules
