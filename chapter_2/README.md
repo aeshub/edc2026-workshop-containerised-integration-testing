@@ -116,23 +116,43 @@ are available in these two classes? Which configuration options are available to
 
 ## Task 4: Inspecting the container
 
-When working with containers you often end up in the situation "my container starts, shuts down immediately and doesn't
-tell me anything". This situation is difficult to debug and there are two main components which are important. Logs and
-remote access. First, let's ensure the container logs are correctly passed to our pytest output.
-
-First, let us add some middleware to the `DockerContainer` object from Testcontainers which streams all the container
-logs to our pytest output.
-
-## Task 5: Inspecting the container 2
-
 Now it's time to remotely access the container (or maybe we should call it locally access?). There are multiple ways to
 do this, particularly easy with Docker Desktop, but we will do it through the terminal.
 
 First, ensure that your test `test_start_postgres_container` doesn't finish running. If it does the container will just
-be torn down by the framework and we won't have time to inspect it. Multiple ways to Rome, but either debug the test or
+be torn down by the framework, and we won't have time to inspect it. Multiple ways to Rome, but either debug the test or
 add an infinite while-loop.
 
-## Task 6: Running our existing unit tests with the postgres database
+Once your container is running for eternity, open a new terminal and run the following command to get a list of all
+running containers.
+
+```bash
+docker ps       # add argument -a if you want to see stopped containers
+```
+
+Inspect the output and find the name for your container. It will be a randomly generated name, but you can see the image
+is `postgres:17`.
+
+The following command will allow you to open a bash terminal in the container. Replace `<container_name>` with the name
+of your container.
+
+```bash
+docker exec -it <container_name> /bin/bash
+```
+
+Now you can inspect anything in the container. Did you add some files in your Dockerfile which it can't find? Wondering
+if your environment variables have been correctly passed along? Being able to inspect the container is very useful to
+debug and recognize what is wrong with your setup.
+
+### The RYUK container
+
+When checking for your container name you would have seen another container named "ryuk" running. This container is
+managed by the Testcontainers framework and is responsible for monitoring and cleaning up any containers that are left
+dangling after your tests. This is a safety mechanism to ensure that you don't end up with a lot of unused containers
+taking up resources on your machine. Think of it as a container orchestrator which you do not have to think too much
+about (unless you want to run tests in parallel).
+
+## Task 5: Running our existing unit tests with the postgres database
 
 ### Hint
 

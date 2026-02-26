@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Iterator
+from typing import Iterator, Generator
 
 import pytest
 from fastapi import FastAPI
