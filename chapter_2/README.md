@@ -53,9 +53,9 @@ to provide the correct connection string to the `TestClient`. You also create a 
 ```python
 # tests/conftest.py
 @pytest.fixture
-def postgres_database() -> PostgresDatabase:
+def postgres_database() -> Generator[PostgresDatabase]:
     # Implementation here
-    yield Database(...)
+    yield PostgresDatabase(...)
 ```
 
 ```python

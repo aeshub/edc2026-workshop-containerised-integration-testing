@@ -26,7 +26,7 @@ def client(app: FastAPI) -> Iterator[TestClient]:
 
 
 @pytest.fixture
-def postgres_database() -> PostgresDatabase:
+def postgres_database() -> Generator[PostgresDatabase]:
     raise NotImplementedError
 
 
