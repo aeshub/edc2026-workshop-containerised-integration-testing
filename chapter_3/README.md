@@ -58,4 +58,5 @@ before the service inside the container is ready.
 ## Task 3: Waiting for an API
 
 If you were to run your Tickets API as a custom container (foreshadowing), how would you implement a wait strategy to
-ensure the API is ready before starting your test?
+ensure the API is ready before starting your test? Consider your method, which we will come back to later, and then move
+on to the next chapter. 
