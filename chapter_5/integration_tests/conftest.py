@@ -24,7 +24,9 @@ def postgres_database() -> Generator[PostgresDatabase]:
 
     with create_postgres_container(network_alias=network_alias) as postgres:
         wait_for_port_mapping_to_be_available(container=postgres, port=5432)
-        psql_url: str = postgres.get_connection_url(host=network_alias)
+        psql_url: str = (
+            f"postgresql{postgres.driver}://{postgres.username}:{postgres.password}@{network_alias}:{postgres.port}/{postgres.dbname}"
+        )
         yield PostgresDatabase(
             container=postgres, connection_string=psql_url, alias=network_alias
         )
