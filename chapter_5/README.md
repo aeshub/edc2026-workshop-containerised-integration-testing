@@ -51,6 +51,9 @@ postgres database fixture in [conftest.py](./integration_tests/conftest.py), wit
 where the container itself is created in a function
 in [custom_containers/postgres.py](./integration_tests/custom_containers/postgres.py).
 
+When running the tests now position yourself in the `chapter_5` folder and use the command `pytest`. We have configured
+the test run inside the `pyproject.toml`file.
+
 ### Hint
 
 #### Environment variables for custom containers
@@ -79,6 +82,24 @@ output. The `LogDockerContainer` class is then used as a base class for the `Tic
 Your task is to edit the custom container you created in task 1 to inherit from `LogDockerContainer` instead of
 `DockerContainer`. This will allow you to see the logs from the container in your test output, which is very useful for
 debugging when something goes wrong.
+
+First, run the `test_startup_of_custom_tickets_api_container` as in the previous task. What do you see?
+
+Then, add a small sleep at the end of the test. What do you see now? Is the Tickets API working as you expect? If not,
+jump straight to Task 3 to understand why! If it actually works we have a problem.
+
+```python
+import time
+
+time.sleep(5)
+```
+
+### Hint
+
+The `LogDockerContainer` class is somewhat complex, and we do not want to focus too much on the details in the workshop
+as it's not the core purpose here. Suffice it to say that there could be many ways of achieving this result, and here we
+have chosen to attach another thread which is responsible for capturing the log output of the container and forwarding
+it to our test output. Additionally, we have some logic to ensure the thread and container is correctly disposed.
 
 ## Task 3: Networking
 

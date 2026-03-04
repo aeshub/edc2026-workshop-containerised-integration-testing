@@ -22,3 +22,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["integration_tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["integration_tests"]
+pythonpath = ["."]

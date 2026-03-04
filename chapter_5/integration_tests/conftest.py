@@ -20,11 +20,13 @@ def tickets_api(postgres_database: PostgresDatabase) -> Generator[TicketsAPI]:
 
 @pytest.fixture
 def postgres_database() -> Generator[PostgresDatabase]:
-    with create_postgres_container() as postgres:
+    network_alias: str = "postgres"
+
+    with create_postgres_container(network_alias=network_alias) as postgres:
         wait_for_port_mapping_to_be_available(container=postgres, port=5432)
-        psql_url: str = postgres.get_connection_url()
+        psql_url: str = postgres.get_connection_url(host=network_alias)
         yield PostgresDatabase(
-            container=postgres, connection_string=psql_url, alias=postgres.dbname
+            container=postgres, connection_string=psql_url, alias=network_alias
         )
 
 
