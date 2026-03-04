@@ -58,9 +58,28 @@ in [custom_containers/postgres.py](./integration_tests/custom_containers/postgre
 The Tickets API was designed to take the database connection string as an environment variable `TICKETS_DATABASE_URL`.
 Investigate the `.with_env()` function in the `DockerContainer` class to set the environment variable.
 
+#### Image versus container
+
+The image must be available before you can start the container. Thus keep in mind that you have to enter a context
+manager for the image first before doing the same for the container.
+
 ## Task 2: Inspecting the logs from your container
+
+If task 1 went as expected you will see the log statements from the test in your terminal. However, there are no
+logs from inside the container itself. If the container works perfectly you might not bother too much, but the instant
+it fails to start for some reason it would be so good to get the logs. Not to mention if the test fails. As this is not
+built-in functionality we here create a helper class which allows us to enable passing all our container
+logs to the test output. It makes our life easier.
+
+Inspect the `LogDockerContainer` class
+in [integration_tests/custom_containers/log_docker_container.py](./integration_tests/custom_containers/log_docker_container.py).
+This is a wrapper around the `DockerContainer` class which allows us to pass the logs from the container to the test
+output. The `LogDockerContainer` class is then used as a base class for the `TicketsApiContainer`.
+
+Your task is to edit the custom container you created in task 1 to inherit from `LogDockerContainer` instead of
+`DockerContainer`. This will allow you to see the logs from the container in your test output, which is very useful for
+debugging when something goes wrong.
 
 ## Task 3: Networking
 
 ## Task 4: Write a test towards the Tickets API
-
