@@ -1,7 +1,7 @@
 from loguru import logger
 
-from integration_tests.custom_containers.postgres import PostgresDatabase
-from integration_tests.custom_containers.tickets_api import TicketsAPI
+from integration_tests_ch5.custom_containers.postgres import PostgresDatabase
+from integration_tests_ch5.custom_containers.tickets_api import TicketsAPI
 
 
 def test_startup_of_custom_tickets_api_container(

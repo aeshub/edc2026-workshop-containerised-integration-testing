@@ -6,11 +6,11 @@ from testcontainers.core.container import DockerContainer
 
 import pytest
 
-from integration_tests.custom_containers.postgres import (
+from integration_tests_ch5.custom_containers.postgres import (
     PostgresDatabase,
     create_postgres_container,
 )
-from integration_tests.custom_containers.tickets_api import TicketsAPI
+from integration_tests_ch5.custom_containers.tickets_api import TicketsAPI
 
 
 @pytest.fixture

@@ -7,11 +7,11 @@ from testcontainers.core.container import DockerContainer
 import pytest
 from testcontainers.core.network import Network
 
-from integration_tests.custom_containers.postgres import (
+from integration_tests_ch6.custom_containers.postgres import (
     PostgresDatabase,
     create_postgres_container,
 )
-from integration_tests.custom_containers.tickets_api import (
+from integration_tests_ch6.custom_containers.tickets_api import (
     TicketsAPI,
     create_tickets_api_container,
     wait_for_tickets_api_to_be_ready,

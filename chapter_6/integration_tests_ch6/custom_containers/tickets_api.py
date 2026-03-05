@@ -9,7 +9,9 @@ from testcontainers.core.container import DockerContainer
 from testcontainers.core.image import DockerImage
 from testcontainers.core.network import Network
 
-from integration_tests.custom_containers.log_docker_container import LogDockerContainer
+from integration_tests_ch6.custom_containers.log_docker_container import (
+    LogDockerContainer,
+)
 
 
 class TicketsAPI:

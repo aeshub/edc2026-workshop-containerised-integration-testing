@@ -42,14 +42,15 @@ for the Testcontainers library in python. The example usage of the `DockerImage`
 you started. Note that we have now packed the `tickets_api` into a folder of its own. You will not run the API directly
 from the source code, but instead build a docker image from the `tickets_api` folder and interact with that container.
 
-The test you can run can be seen in [test_integration.py](./integration_tests/test_integration.py), and you need
-to define fixtures for the custom container in [conftest.py](./integration_tests/conftest.py). The custom container
+The test you can run can be seen in [test_integration.py](integration_tests_ch5/test_integration.py), and you need
+to define fixtures for the custom container in [conftest.py](integration_tests_ch5/conftest.py). The custom container
 itself should be defined
-in [integration_tests/custom_containers/tickets_api.py](./integration_tests/custom_containers/tickets_api.py) where we
+in [integration_tests/custom_containers/tickets_api.py](integration_tests_ch5/custom_containers/tickets_api.py) where we
 have also defined a wrapper class similarly to what we did with the database. Note that we have already defined the
-postgres database fixture in [conftest.py](./integration_tests/conftest.py), with a slightly different setup than before
+postgres database fixture in [conftest.py](integration_tests_ch5/conftest.py), with a slightly different setup than
+before
 where the container itself is created in a function
-in [custom_containers/postgres.py](./integration_tests/custom_containers/postgres.py).
+in [custom_containers/postgres.py](integration_tests_ch5/custom_containers/postgres.py).
 
 When running the tests now position yourself in the `chapter_5` folder and use the command `pytest`. We have configured
 the test run inside the `pyproject.toml`file.
@@ -80,7 +81,7 @@ ensure the Fast API application in Tickets API has actually started. Our tests w
 strategies have come to an end. If the application has not started by then, our tests will fail. This is a common issue
 when working with Testcontainers and Docker in general, and it's something you need to be aware of.
 
-Your task is to write another wait function in [tickets_api.py](./integration_tests/custom_containers/tickets_api.py)
+Your task is to write another wait function in [tickets_api.py](integration_tests_ch5/custom_containers/tickets_api.py)
 which should this time ensure the application has started.
 
 ### Hint
@@ -99,7 +100,7 @@ built-in functionality we here create a helper class which allows us to enable p
 logs to the test output. It makes our life easier.
 
 Inspect the `LogDockerContainer` class
-in [integration_tests/custom_containers/log_docker_container.py](./integration_tests/custom_containers/log_docker_container.py).
+in [integration_tests/custom_containers/log_docker_container.py](integration_tests_ch5/custom_containers/log_docker_container.py).
 This is a wrapper around the `DockerContainer` class which allows us to pass the logs from the container to the test
 output. The `LogDockerContainer` class is then used as a base class for the `TicketsApiContainer`.
 
@@ -141,7 +142,8 @@ we were operating by running our tests from the host machine towards a Docker co
 host machine.
 
 If you inspect the `create_postgres_container()` function
-in [custom_containers/postgres.py](./integration_tests/custom_containers/postgres.py) you will see that we have already
+in [custom_containers/postgres.py](integration_tests_ch5/custom_containers/postgres.py) you will see that we have
+already
 made some changes in this chapter which incorporates parts of this. The network alias has been added for our postgres
 container such that on the docker network you may use `postgres` instead of `localhost` or an IP address. We have also
 adjusted the connection string such that it now points to an address internally on the Docker Network.

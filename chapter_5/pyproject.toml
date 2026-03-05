@@ -3,7 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "integration-tests"
+name = "integration-tests-ch5"
 version = "1.0.0"
 description = "Internal reusable integration test harness"
 requires-python = ">=3.13"
@@ -21,8 +21,8 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["integration_tests"]
+where = ["integration_tests_ch5"]
 
 [tool.pytest.ini_options]
-testpaths = ["integration_tests"]
+testpaths = ["integration_tests_ch5"]
 pythonpath = ["."]
