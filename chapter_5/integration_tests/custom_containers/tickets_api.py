@@ -24,5 +24,5 @@ def create_tickets_api_container() -> Tuple[DockerImage, DockerContainer]:
     raise NotImplementedError
 
 
-def wait_for_tickets_api_to_be_ready(tickets_api: TicketsAPI) -> None:
+def wait_for_tickets_api_to_be_ready(backend_url: str, timeout: int = 20) -> None:
     raise NotImplementedError
