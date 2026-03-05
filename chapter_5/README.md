@@ -80,7 +80,8 @@ ensure the Fast API application in Tickets API has actually started. Our tests w
 strategies have come to an end. If the application has not started by then, our tests will fail. This is a common issue
 when working with Testcontainers and Docker in general, and it's something you need to be aware of.
 
-Your task is to write another wait function which should this time ensure the application has started.
+Your task is to write another wait function in [tickets_api.py](./integration_tests/custom_containers/tickets_api.py)
+which should this time ensure the application has started.
 
 ### Hint
 
